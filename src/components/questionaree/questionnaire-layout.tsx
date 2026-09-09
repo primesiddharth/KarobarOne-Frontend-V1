@@ -1,4 +1,5 @@
 "use client"
+
 import { LiveWebsitePreview } from "./preview/LiveWebsitePreview"
 import { useQuestionnaire } from "@/context/questionnaire-context"
 import { ProgressBar } from "./progress-bar"
@@ -33,76 +34,109 @@ export function QuestionnaireLayout() {
   const { currentStep } = useQuestionnaire()
 
   const CurrentStepComponent = steps[currentStep] || Step1Welcome
+
   const showSidebar = currentStep > 1 && currentStep < 15
   const showProgress = currentStep > 1 && currentStep < 15
 
   return (
     <div className="min-h-screen bg-background">
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="container mx-auto px-4 py-4">
+
           <div className="flex items-center justify-between">
+
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">W</span>
+                <span className="text-primary-foreground font-bold text-sm">
+                  W
+                </span>
               </div>
+
               <span className="font-semibold text-foreground hidden sm:inline">
                 Website Requirement Questionnaire
               </span>
             </div>
+
             {showProgress && (
               <div className="flex-1 max-w-xs ml-4 hidden md:block">
                 <ProgressBar />
               </div>
             )}
+
           </div>
+
           {showProgress && (
             <div className="mt-3 md:hidden">
               <ProgressBar />
             </div>
           )}
+
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
-  {showSidebar && (
-    <div className="xl:col-span-2">
-      <SidebarNavigation />
-    </div>
-  )}
+      {/* =========================================================
+          Main Content
 
-  <div
-    className={
-      showSidebar
-        ? "xl:col-span-5"
-        : "xl:col-span-6 xl:col-start-4"
-    }
-  >
-    <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
-      <CurrentStepComponent />
-    </div>
-  </div>
+          Desktop:
+          Steps    = 10%
+          Preview  = 40%
+          Questions = 50%
+      ========================================================= */}
 
-  {showSidebar && (
-    <div className="xl:col-span-5">
-      <LiveWebsitePreview />
-    </div>
-  )}
+      <main className="w-full px-4 py-8">
 
-</div>
+        <div
+          className={
+            showSidebar
+              ? "grid grid-cols-1 xl:grid-cols-[10fr_50fr_40fr] gap-1.5"
+              : "grid grid-cols-1 xl:max-w-3xl xl:mx-auto"
+          }
+        >
+
+          {/* 10% — Progress / Steps */}
+          {showSidebar && (
+            <div className="min-w-0">
+              <SidebarNavigation />
+            </div>
+          )}
+
+
+          {/* 50% — Questions */}
+          <div className="min-w-0">
+
+            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
+              <CurrentStepComponent />
+            </div>
+
+          </div>
+
+            {/* 40% — Live Website Preview */}
+          {showSidebar && (
+            <div className="min-w-0">
+              <LiveWebsitePreview />
+            </div>
+          )}
+
+        </div>
+
       </main>
+
 
       {/* Footer */}
       <footer className="border-t border-border py-6 mt-auto">
         <div className="container mx-auto px-4">
+
           <p className="text-center text-sm text-muted-foreground">
-            Your information is secure and will only be used for website development purposes.
+            Your information is secure and will only be used for website
+            development purposes.
           </p>
+
         </div>
       </footer>
+
     </div>
   )
 }
