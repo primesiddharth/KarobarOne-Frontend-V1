@@ -46,7 +46,7 @@ export function DropdownSelect({
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm text-foreground transition-colors duration-150 hover:border-primary/40 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+        className="flex w-full h-10 rounded-lg items-center justify-between  border border-border bg-muted/30 px-4 py-3 text-sm text-foreground transition-colors duration-150 hover:border-primary/40 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
       >
         <span className={value ? "text-foreground" : "text-muted-foreground"}>
           {value || placeholder}
@@ -75,7 +75,7 @@ export function DropdownSelect({
                   setOpen(false)
                 }}
                 className={`group flex w-full items-center justify-between  hover:bg-[#f0ecea] rounded-lg px-4 py-2.5 text-left text-sm text-foreground transition-colors duration-150 hover:border-l-primary/60 hover:bg-muted/70 ${selected
-                  ? "border-l-primary bg-muted/40 font-medium"
+                  ? "border-l-primary bg-muted/40 font-semibold"
                   : "border-l-transparent"
                   }`}
               >
@@ -142,7 +142,7 @@ export function MultiDropdownSelect({
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
-          className="flex w-full items-center justify-between rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm text-foreground transition-colors duration-150 hover:border-primary/40 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="flex w-full items-center justify-between h-10 rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm text-foreground transition-colors duration-150 hover:border-primary/40 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
         >
           <span className={value.length ? "text-foreground" : "text-muted-foreground"}>
             {value.length
@@ -170,7 +170,7 @@ export function MultiDropdownSelect({
                   type="button"
                   onClick={() => toggle(option)}
                   className={`group flex w-full items-center justify-between  px-4 py-2.5 text-left text-sm text-foreground transition-colors duration-150 hover:bg-[#f0ecea] rounded-lg ${selected
-                    ? "border-l-primary bg-muted/40 font-medium"
+                    ? "border-l-primary bg-muted/40 font-semibold"
                     : "border-l-transparent"
                     }`}
                 >
@@ -959,9 +959,17 @@ export function Step5Operating() {
   const [differentiation, setDifferentiation] = useState(
     d.differentiation || "",
   )
+  const [websiteHelpToAchive, setWebsiteHelpToAchive] = useState(
+    d.differentiation || "",
+  )
+  
+
+  const [improveCompetitors, setImproveCompetitors] = useState(d.improveCompetitors || "")
 
   const saveData = () => {
     updateData({
+      websiteHelpToAchive,
+      improveCompetitors,
       competitorKnowledge,
       competitorCount,
       competitors,
@@ -1028,8 +1036,8 @@ export function Step5Operating() {
 
         {/*---------- MAIN QUESTION-------- */}
 
-        <div className="grid gap-4">
-          <Label className="text-base font-bold text-foreground">
+        <div className="grid gap-2">
+          <Label className="text-sm font-semibold text-foreground">
             Do you know your main competitors?
           </Label>
 
@@ -1044,8 +1052,8 @@ export function Step5Operating() {
         {hasCompetitors && (
           <>
             {/* HIDDEN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-medium text-[#877a75]">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-[#877a75]">
                 How many competitors should we consider while planning your
                 website?
               </Label>
@@ -1060,8 +1068,8 @@ export function Step5Operating() {
 
             {/* MAIN */}
             {knownCompetitors && (
-              <div className="grid gap-3 border-t border-border pt-6">
-                <Label className="text-base font-bold text-foreground">
+              <div className="grid gap-3  border-border ">
+                <Label className="text-sm font-semibold text-foreground">
                   Who are your main competitors?
                 </Label>
 
@@ -1075,8 +1083,8 @@ export function Step5Operating() {
 
             {/* HIDDEN */}
             {competitors && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   Where do your competitors primarily compete with you?
                 </Label>
 
@@ -1090,8 +1098,8 @@ export function Step5Operating() {
             )}
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 What type of competitors are they?
               </Label>
 
@@ -1104,8 +1112,8 @@ export function Step5Operating() {
             </div>
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Why do customers currently choose competitors instead of you?
               </Label>
 
@@ -1119,8 +1127,8 @@ export function Step5Operating() {
 
             {/* HIDDEN */}
             {customerChoice.length > 0 && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   What is the biggest competitive threat to your business?
                 </Label>
 
@@ -1136,8 +1144,8 @@ export function Step5Operating() {
 
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Where do you believe your business is stronger than those
                 competitors?
               </Label>
@@ -1153,8 +1161,8 @@ export function Step5Operating() {
             {businessStrengths.length > 0 && (
               <>
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     What competitive position should your website communicate?
                   </Label>
 
@@ -1167,8 +1175,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Should your website directly compare your capabilities with
                     alternatives?
                   </Label>
@@ -1181,9 +1189,9 @@ export function Step5Operating() {
                   />
                 </div>
 
-                {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                {/* HIDDEN ---- AI GEN  */} 
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     What should visitors understand about you after comparing you
                     with competitors?
                   </Label>
@@ -1192,13 +1200,13 @@ export function Step5Operating() {
                     className="rounded-xl border border-border bg-muted/30  "
                     value={visitorUnderstand}
                     onChange={(e) => setVisitorUnderstand(e.target.value)}
-                    placeholder="Write your answer"
+                    placeholder="AI GEN ...."
                   />
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which achievements does your own business already have?
                   </Label>
 
@@ -1211,8 +1219,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which achievements are you comfortable displaying publicly?
                   </Label>
 
@@ -1225,8 +1233,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     What proof would convince customers that your business is credible?
                   </Label>
 
@@ -1239,8 +1247,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     How should your achievements be presented?
                   </Label>
 
@@ -1260,8 +1268,8 @@ export function Step5Operating() {
 
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Where do competitors currently appear stronger than your business?
               </Label>
 
@@ -1276,8 +1284,8 @@ export function Step5Operating() {
             {competitorStrengths.length > 0 && (
               <>
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     What online capability do competitors have that you currently
                     lack?
                   </Label>
@@ -1291,8 +1299,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which competitor achievements concern or impress you most?
                   </Label>
 
@@ -1309,8 +1317,8 @@ export function Step5Operating() {
 
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Which online channels are your competitors strong on?
               </Label>
 
@@ -1324,8 +1332,8 @@ export function Step5Operating() {
 
             {/* HIDDEN */}
             {onlineChannels.length > 0 && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   How would you rate competitors' websites compared with your
                   current online presence?
                 </Label>
@@ -1341,8 +1349,8 @@ export function Step5Operating() {
 
             {/* MAIN */}
             {canReviewWebsites && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-bold text-foreground">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-foreground">
                   What do you like about competitors' websites?
                 </Label>
 
@@ -1357,8 +1365,8 @@ export function Step5Operating() {
 
             {/* HIDDEN / Q196 */}
             {websiteLikes.length > 0 && (
-              <div className="grid gap-3 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-3  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   Are there any competitor websites whose visual style you
                   like?
                 </Label>
@@ -1375,8 +1383,8 @@ export function Step5Operating() {
 
             {/* HIDDEN / Q197 */}
             {competitorWebsiteUrls.trim() && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   What exactly do you like about those websites?
                 </Label>
 
@@ -1391,8 +1399,8 @@ export function Step5Operating() {
 
             {/* MAIN */}
             {canReviewWebsites && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-bold text-foreground">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-foreground">
                   Which competitor website features would you like to match or
                   improve upon?
                 </Label>
@@ -1408,8 +1416,8 @@ export function Step5Operating() {
 
             {/* HIDDEN / Q198 */}
             {visualPreferences.length > 0 && (
-              <div className="grid gap-4 border-t border-border pt-6">
-                <Label className="text-base font-medium text-[#877a75]">
+              <div className="grid gap-2  border-border ">
+                <Label className="text-sm font-semibold text-[#877a75]">
                   Should your website feel similar or clearly differentiated?
                 </Label>
 
@@ -1423,8 +1431,8 @@ export function Step5Operating() {
             )}
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Where do competitors rank better online?
               </Label>
 
@@ -1440,8 +1448,8 @@ export function Step5Operating() {
 
               <>
                 {/* Hidden (109) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     How should people primarily discover your business?
                   </Label>
                   <MultiDropdownSelect
@@ -1453,8 +1461,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* Hidden (110) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     How should people primarily discover your business?
                   </Label>
                   <DropdownSelect
@@ -1466,8 +1474,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* Hidden (112) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     How should people primarily discover your business?
                   </Label>
                   <MultiDropdownSelect
@@ -1482,8 +1490,8 @@ export function Step5Operating() {
             )}
 
             {/* MAIN */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 Which competitor content appears most effective?
               </Label>
 
@@ -1497,8 +1505,8 @@ export function Step5Operating() {
             {competitorContent.length > 0 && (
               <>
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Do competitors appear to run paid digital advertising?
                   </Label>
 
@@ -1511,8 +1519,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which competitor trust signals are visible online?
                   </Label>
 
@@ -1530,8 +1538,8 @@ export function Step5Operating() {
         )}
 
         {/* MAIN(147) */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 What is the single most important business result you want from the website?
               </Label>
 
@@ -1546,8 +1554,8 @@ export function Step5Operating() {
             {mainBusinessResult && (
               <>
                 {/* HIDDEN(143) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which future achievement matters most to you?
                   </Label>
 
@@ -1561,8 +1569,8 @@ export function Step5Operating() {
 
                 {/* HIDDEN(144) */}
                 {futureAchievement && (
-                  <div className="grid gap-4 border-t border-border pt-6">
-                    <Label className="text-base font-medium text-[#877a75]">
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
                       Over what period do you want to achieve this?
                     </Label>
 
@@ -1577,8 +1585,8 @@ export function Step5Operating() {
 
                 {/* HIDDEN(148) */}
                 {futureAchievement && (
-                  <div className="grid gap-4 border-t border-border pt-6">
-                    <Label className="text-base font-medium text-[#877a75]">
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
                       Which secondary business outcomes do you want?
                     </Label>
 
@@ -1593,8 +1601,8 @@ export function Step5Operating() {
 
                 {/* HIDDEN(149) */}
                 {futureAchievement && (
-                  <div className="grid gap-4 border-t border-border pt-6">
-                    <Label className="text-base font-medium text-[#877a75]">
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
                       What business problem should the website solve first?
                     </Label>
 
@@ -1608,8 +1616,8 @@ export function Step5Operating() {
                 )}
                 {/* HIDDEN(151) */}
                 {futureAchievement && (
-                  <div className="grid gap-4 border-t border-border pt-6">
-                    <Label className="text-base font-medium text-[#877a75]">
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
                       How many qualified leads would make the website worthwhile each month?
                     </Label>
 
@@ -1623,8 +1631,8 @@ export function Step5Operating() {
                 )}
                 {/* HIDDEN(152) */}
                 {futureAchievement && (
-                  <div className="grid gap-4 border-t border-border pt-6">
-                    <Label className="text-base font-medium text-[#877a75]">
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
                       How many additional sales/orders/bookings would make the website worthwhile monthly?
                     </Label>
 
@@ -1636,12 +1644,26 @@ export function Step5Operating() {
                     />
                   </div>
                 )}
+                {/* 158---- */}
+                {futureAchievement && (
+                  <div className="grid gap-2  border-border ">
+                    <Label className="text-sm font-semibold text-[#877a75]">
+                      What should the website help you achieve within 12 months?
+                    </Label>
+
+                    <Textarea
+                      value={websiteHelpToAchive}
+                      onChange={(e)=>setWebsiteHelpToAchive(e.target.value)}
+                      placeholder="Select an option"
+                    />
+                  </div>
+                )}
               </>
             )}
 
             {/* MAIN(159) */}
-            <div className="grid gap-4 border-t border-border pt-6">
-              <Label className="text-base font-bold text-foreground">
+            <div className="grid gap-2  border-border ">
+              <Label className="text-sm font-semibold text-foreground">
                 How should website success primarily be measured?
               </Label>
 
@@ -1656,8 +1678,8 @@ export function Step5Operating() {
             {successMeasurement.length > 0 && (
               <>
                 {/* HIDDEN(137) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     How aggressively should your website compete digitally?
                   </Label>
 
@@ -1670,8 +1692,8 @@ export function Step5Operating() {
                 </div>
 
                 {/* HIDDEN(138) */}
-                <div className="grid gap-4 border-t border-border pt-6">
-                  <Label className="text-base font-medium text-[#877a75]">
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
                     Which online metric would most clearly show that you are catching competitors?
                   </Label>
 
@@ -1680,6 +1702,18 @@ export function Step5Operating() {
                     value={catchUpMetric}
                     onChange={setCatchUpMetric}
                     placeholder="Select an option"
+                  />
+                </div>
+                {/* HIDDEN(139) ------ AI GEN */}
+                <div className="grid gap-2  border-border ">
+                  <Label className="text-sm font-semibold text-[#877a75]">
+                    What should the website improve compared with competitors?
+                  </Label>
+
+                  <Textarea
+                    value={improveCompetitors}
+                    onChange={(e)=>setImproveCompetitors(e.target.value)}
+                    placeholder="AI GEN....."
                   />
                 </div>
 
