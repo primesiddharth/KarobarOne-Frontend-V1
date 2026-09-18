@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 const steps = [
   { number: 1, title: "Welcome" },
   { number: 2, title: "Basic Details" },
+  { number: 3, title: "IT Growth & Investment" },
   { number: 5, title: "Operating Hours" },
   { number: 6, title: "Products/Services" },
   { number: 11, title: "Business USP" },

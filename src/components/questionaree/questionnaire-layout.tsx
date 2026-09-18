@@ -4,6 +4,8 @@ import { LiveWebsitePreview } from "./preview/LiveWebsitePreview"
 import { useQuestionnaire } from "@/context/questionnaire-context"
 import { ProgressBar } from "./progress-bar"
 import { SidebarNavigation } from "./sidebar-navigation"
+import { NavigationButtons } from "./navigation-buttons"
+
 import { Step1Welcome } from "./steps/step-1-welcome"
 import { Step2BasicDetails } from "./steps/step-2-basic-details"
 import { Step5Operating } from "./steps/step-5-operating"
@@ -15,6 +17,8 @@ import { Step12BSocialMedia } from "./steps/step-12b-social-media"
 import { Step13Licenses } from "./steps/step-13-licenses"
 import { Step14Review } from "./steps/step-14-review"
 import { Step15Success } from "./steps/step-15-success"
+
+import { Section3 } from "../questionnaire-new/components/Section3"
 
 const steps: { [key: number]: React.ComponentType } = {
   1: Step1Welcome,
@@ -31,18 +35,61 @@ const steps: { [key: number]: React.ComponentType } = {
 }
 
 export function QuestionnaireLayout() {
-  const { currentStep } = useQuestionnaire()
-
-  const CurrentStepComponent = steps[currentStep] || Step1Welcome
+  const { currentStep, data, updateData } = useQuestionnaire()
 
   const showSidebar = currentStep > 1 && currentStep < 15
   const showProgress = currentStep > 1 && currentStep < 15
+
+  const updateSection3Data = (
+    updates: Record<string, string | string[] | undefined>
+  ) => {
+    const cleaned = { ...data.section3Data }
+
+    Object.entries(updates).forEach(([key, value]) => {
+      if (
+        value === undefined ||
+        value === "" ||
+        (Array.isArray(value) && value.length === 0)
+      ) {
+        delete cleaned[key]
+      } else {
+        cleaned[key] = value
+      }
+    })
+
+    updateData({
+      section3Data: cleaned,
+    })
+  }
+
+  const renderCurrentStep = () => {
+    // Step 3 — IT Growth, Investment,
+    // Website Visual System & Publishing
+    if (currentStep === 3) {
+      return (
+        <div className="w-full overflow-visible">
+          <Section3
+            data={data.section3Data}
+            updateData={updateSection3Data}
+          />
+
+          <div className="mt-10 w-full pt-8">
+            <NavigationButtons />
+          </div>
+        </div>
+      )
+    }
+
+    const CurrentStepComponent = steps[currentStep] || Step1Welcome
+
+    return <CurrentStepComponent />
+  }
 
   return (
     <div className="min-h-screen bg-background">
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+      <header className="sticky top-0 z-[100] bg-background/95 backdrop-blur border-b border-border">
         <div className="container mx-auto px-4 py-4">
 
           <div className="flex items-center justify-between">
@@ -76,17 +123,7 @@ export function QuestionnaireLayout() {
         </div>
       </header>
 
-
-      {/* =========================================================
-          Main Content
-
-          Desktop:
-          Steps    = 10%
-          Preview  = 40%
-          Questions = 50%
-      ========================================================= */}
-
-      <main className="w-full px-4 py-8">
+      <main className="relative z-0 w-full px-4 py-8">
 
         <div
           className={
@@ -96,24 +133,20 @@ export function QuestionnaireLayout() {
           }
         >
 
-          {/* 10% — Progress / Steps */}
           {showSidebar && (
             <div className="min-w-0">
               <SidebarNavigation />
             </div>
           )}
 
+          <div className="relative z-0 min-w-0">
 
-          {/* 50% — Questions */}
-          <div className="min-w-0">
-
-            <div className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
-              <CurrentStepComponent />
+            <div className="relative z-0 bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8">
+              {renderCurrentStep()}
             </div>
 
           </div>
 
-            {/* 40% — Live Website Preview */}
           {showSidebar && (
             <div className="min-w-0">
               <LiveWebsitePreview />
@@ -123,7 +156,6 @@ export function QuestionnaireLayout() {
         </div>
 
       </main>
-
 
       {/* Footer */}
       <footer className="border-t border-border py-6 mt-auto">

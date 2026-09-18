@@ -19,6 +19,9 @@ export interface DayTiming {
   close: string
 }
 
+export type Section3Value = string | string[] | undefined
+export type Section3Data = Record<string, Section3Value>
+
 export interface QuestionnaireData {
   // Page 2 - Business Basic Details
   businessName: string
@@ -44,6 +47,9 @@ export interface QuestionnaireData {
   panNumber: string
   businessType: string // "gst" | "pan" — which registration type is being declared
   taxDocument: File | null
+
+  // Page 3 - IT Growth, Investment, Website Visual System & Publishing
+  section3Data: Section3Data
 
   // Page 5 - Business Operating Details
   daysOpen: string[]
@@ -107,6 +113,9 @@ const initialData: QuestionnaireData = {
   panNumber: "",
   businessType: "",
   taxDocument: null,
+
+  section3Data: {},
+
   daysOpen: [],
   dayTimings: {},
   planType: "",
@@ -137,7 +146,20 @@ const initialData: QuestionnaireData = {
 }
 
 // Only these step numbers actually exist in the questionnaire flow
-const validSteps = [1, 2, 5, 6, 11, 12, 12.5, 12.7, 13, 14, 15]
+const validSteps = [
+  1,
+  2,
+  3,
+  5,
+  6,
+  11,
+  12,
+  12.5,
+  12.7,
+  13,
+  14,
+  15,
+]
 
 interface QuestionnaireContextType {
   data: QuestionnaireData
@@ -178,13 +200,20 @@ export function QuestionnaireProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const dataToSave = { ...data }
+
     Object.keys(dataToSave).forEach((key) => {
       const value = dataToSave[key as keyof QuestionnaireData]
+
       if (value instanceof File) {
-        (dataToSave as Record<string, unknown>)[key] = null
+        ;(dataToSave as Record<string, unknown>)[key] = null
       }
     })
-    dataToSave.items = dataToSave.items.map((item) => ({ ...item, images: [] }))
+
+    dataToSave.items = dataToSave.items.map((item) => ({
+      ...item,
+      images: [],
+    }))
+
     localStorage.setItem("questionnaireData", JSON.stringify(dataToSave))
     localStorage.setItem("questionnaireStep", currentStep.toString())
   }, [data, currentStep])
@@ -195,6 +224,7 @@ export function QuestionnaireProvider({ children }: { children: ReactNode }) {
 
   const nextStep = () => {
     const idx = validSteps.indexOf(currentStep)
+
     if (idx !== -1 && idx < validSteps.length - 1) {
       setCurrentStep(validSteps[idx + 1])
     }
@@ -202,6 +232,7 @@ export function QuestionnaireProvider({ children }: { children: ReactNode }) {
 
   const prevStep = () => {
     const idx = validSteps.indexOf(currentStep)
+
     if (idx > 0) {
       setCurrentStep(validSteps[idx - 1])
     }
@@ -234,8 +265,10 @@ export function QuestionnaireProvider({ children }: { children: ReactNode }) {
 
 export function useQuestionnaire() {
   const context = useContext(QuestionnaireContext)
+
   if (context === undefined) {
     throw new Error("useQuestionnaire must be used within a QuestionnaireProvider")
   }
+
   return context
 }
