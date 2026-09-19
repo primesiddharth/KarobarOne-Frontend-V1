@@ -146,20 +146,7 @@ const initialData: QuestionnaireData = {
 }
 
 // Only these step numbers actually exist in the questionnaire flow
-const validSteps = [
-  1,
-  2,
-  3,
-  5,
-  6,
-  11,
-  12,
-  12.5,
-  12.7,
-  13,
-  14,
-  15,
-]
+const validSteps = [1, 2, 3, 5, 14, 15]
 
 interface QuestionnaireContextType {
   data: QuestionnaireData

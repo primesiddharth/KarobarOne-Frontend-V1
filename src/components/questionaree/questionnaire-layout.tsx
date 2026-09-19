@@ -9,12 +9,6 @@ import { NavigationButtons } from "./navigation-buttons"
 import { Step1Welcome } from "./steps/step-1-welcome"
 import { Step2BasicDetails } from "./steps/step-2-basic-details"
 import { Step5Operating } from "./steps/step-5-operating"
-import { Step6ProductsServices } from "./steps/step-6-products-services"
-import { Step11BusinessUSP } from "./steps/step-11-business-usp"
-import { Step12AboutUs } from "./steps/step-12-about-us"
-import { Step12AWhyChooseUs } from "./steps/Step12-A-WhyChooseUs"
-import { Step12BSocialMedia } from "./steps/step-12b-social-media"
-import { Step13Licenses } from "./steps/step-13-licenses"
 import { Step14Review } from "./steps/step-14-review"
 import { Step15Success } from "./steps/step-15-success"
 
@@ -24,12 +18,6 @@ const steps: { [key: number]: React.ComponentType } = {
   1: Step1Welcome,
   2: Step2BasicDetails,
   5: Step5Operating,
-  6: Step6ProductsServices,
-  11: Step11BusinessUSP,
-  12: Step12AboutUs,
-  12.5: Step12AWhyChooseUs,
-  12.7: Step12BSocialMedia,
-  13: Step13Licenses,
   14: Step14Review,
   15: Step15Success,
 }

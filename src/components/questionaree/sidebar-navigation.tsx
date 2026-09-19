@@ -8,11 +8,6 @@ const steps = [
   { number: 2, title: "Basic Details" },
   { number: 3, title: "IT Growth & Investment" },
   { number: 5, title: "Operating Hours" },
-  { number: 6, title: "Products/Services" },
-  { number: 11, title: "Business USP" },
-  { number: 12, title: "About Us" },
-  { number: 12.5, title: "Why Choose Us" },
-  { number: 13, title: "Licenses" },
   { number: 14, title: "Review" },
   { number: 15, title: "Success" },
 ]

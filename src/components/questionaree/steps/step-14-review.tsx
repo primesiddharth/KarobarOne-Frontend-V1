@@ -179,65 +179,11 @@ export function Step14Review() {
           </div>
         </ReviewCard>
 
-        <ReviewCard title="Products / Services" step={6}>
-          <div className="grid gap-2">
-            <p><span className="font-medium text-foreground">Plan Type:</span> {formatLabel(data.planType)}</p>
-            <p><span className="font-medium text-foreground">Total Items:</span> {data.items?.length || 0}</p>
-            {data.items && data.items.length > 0 && (
-              <div className="grid gap-1 mt-1">
-                {data.items.map((item) => (
-                  <p key={item.id}>
-                    <span className="font-medium text-foreground">{item.name || "Untitled"}:</span>{" "}
-                    {item.salePrice ? `₹${item.salePrice}` : "Price not set"}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
-        </ReviewCard>
 
-        <ReviewCard title="Business USP" step={11}>
-          <p>{formatList(data.businessUSP)}</p>
-        </ReviewCard>
 
-        <ReviewCard title="About Us" step={12}>
-          <div className="grid gap-2">
-            <p><span className="font-medium text-foreground">Promoter Name:</span> {data.promoterName || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Promoter Designation:</span> {data.promoterDesignation || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Promoter Bio:</span> {data.promoterBio || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Promoter Photo:</span> {data.promoterPhoto?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Year Founded:</span> {data.yearFounded || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Company History:</span> {data.companyHistory || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Mission & Vision:</span> {data.missionVision || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Certification (Statutory):</span> {data.certificationStatutory?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Problem Solved:</span> {data.problemSolved || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Unique Solution:</span> {data.uniqueSolution || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Trust & Credibility:</span> {data.trustCredibility || "Not provided"}</p>
-          </div>
-        </ReviewCard>
 
-        <ReviewCard title="Why Choose Us" step={12.5}>
-          <p>{formatList(data.whyChooseUs)}</p>
-        </ReviewCard>
 
-        <ReviewCard title="Social Media" step={12.7}>
-          <div className="grid gap-2">
-            <p><span className="font-medium text-foreground">Facebook:</span> {data.facebookUrl || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">Instagram:</span> {data.instagramUrl || "Not provided"}</p>
-            <p><span className="font-medium text-foreground">LinkedIn:</span> {data.linkedinUrl || "Not provided"}</p>
-          </div>
-        </ReviewCard>
 
-        <ReviewCard title="Licenses & Certifications" step={13}>
-          <div className="grid gap-2">
-            <p><span className="font-medium text-foreground">Business Registration:</span> {data.businessRegistration?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Tax Compliance:</span> {data.taxCompliance?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Trade Authorization:</span> {data.tradeAuthorization?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Safety Compliance:</span> {data.safetyCompliance?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Quality Certifications:</span> {data.qualityCertifications?.name || "Not uploaded"}</p>
-            <p><span className="font-medium text-foreground">Brand Identity:</span> {data.brandIdentity?.name || "Not uploaded"}</p>
-          </div>
-        </ReviewCard>
       </div>
 
       <div className="bg-card rounded-xl border border-border p-6 space-y-4">
